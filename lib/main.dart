@@ -152,7 +152,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           divisions: 20,
                           label: "${player.speed.toStringAsFixed(2)}x",
                           semanticFormatterCallback: (value) {
-                            return "${value}";
+                            return "value";
                           },
                           onChanged: (value) {
                             setSettingsDialogState(
@@ -227,11 +227,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     IconButton(
                         onPressed: () {
                           setState(() {
-                            var new_player = Player();
-                            new_player.color = player.color;
-                            new_player.name = player.name;
+                            var newPlayer = Player();
+                            newPlayer.color = player.color;
+                            newPlayer.name = player.name;
                             players.insert(
-                                players.indexOf(player) + 1, new_player);
+                                players.indexOf(player) + 1, newPlayer);
                             Navigator.of(context).pop();
                           });
                         },
@@ -258,7 +258,9 @@ class _MyHomePageState extends State<MyHomePage> {
               borderRadius: BorderRadius.circular(8),
               boxShadow: [
                 BoxShadow(
-                  color: player.playing ? Color(player.color ?? 0) : Color(0),
+                  color: player.playing
+                      ? Color(player.color ?? 0)
+                      : const Color(0x0),
                   blurRadius: 10,
                 ),
               ]),
@@ -274,7 +276,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   player.stop();
                 });
               } else {
-                var song = player.play();
+                player.play();
                 setState(() {});
                 player.playerStateStream.listen((playerState) {
                   if (playerState.processingState ==
