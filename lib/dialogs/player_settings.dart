@@ -58,17 +58,16 @@ Future<void> playerSettingsDialog(BuildContext context, Player player,
                       children: [
                         const Text("Loop"),
                         Checkbox(
-                            value: player.loop,
-                            onChanged: ((value) {
+                            value: player.loopMode == LoopMode.one,
+                            onChanged: (value) {
                               setSettingsDialogState(() {
-                                player.loop = value!;
-                                if (value) {
+                                if (value!) {
                                   player.setLoopMode(LoopMode.one);
                                 } else {
                                   player.setLoopMode(LoopMode.off);
                                 }
                               });
-                            })),
+                            }),
                       ],
                     ),
                     Slider(

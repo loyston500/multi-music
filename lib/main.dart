@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'package:toml/toml.dart';
+
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'impls/player.dart';
 import 'dialogs/player_settings.dart';
+import 'dialogs/json_display.dart';
 
 void main() {
   runApp(const MyApp());
@@ -98,6 +102,33 @@ class MyHomePageState extends State<MyHomePage> {
     return Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
+          actions: [
+            PopupMenuButton<int>(
+              itemBuilder: (context) {
+                return [
+                  const PopupMenuItem(value: 1, child: Text("Build JSON")),
+                  const PopupMenuItem(value: 2, child: Text("Build TOML")),
+                  const PopupMenuItem(value: 3, child: Text("Load JSON/TOML")),
+                ];
+              },
+              onSelected: (value) async {
+                if (value == 1) {
+                  String encoded =
+                      const JsonEncoder.withIndent("  ").convert(players);
+                  await JsonDisplayDialog(context, encoded);
+                } else if (value == 2) {
+                  String encoded = TomlDocument.fromMap({
+                    "players": [
+                      for (var player in players)
+                        player.toJson()
+                          ..removeWhere((key, value) => value == null)
+                    ]
+                  }).toString();
+                  await JsonDisplayDialog(context, encoded);
+                }
+              },
+            ),
+          ],
         ),
         body: Column(children: [
           Expanded(
