@@ -99,6 +99,20 @@ Future<void> playerSettingsDialog(BuildContext context, Player player,
                             },
                           );
                         }),
+                    Slider(
+                      value: player.pitch,
+                      min: 0,
+                      max: 2,
+                      divisions: 20,
+                      label: "${player.pitch.toStringAsFixed(2)}x",
+                      onChanged: (value) {
+                        setSettingsDialogState(
+                          () {
+                            player.setPitch(value);
+                          },
+                        );
+                      },
+                    ),
                     TextButton(
                         onPressed: () async {
                           await playerColorPickerDialog(context, player);
