@@ -116,7 +116,6 @@ Future<void> playerSettingsDialog(BuildContext context, Player player,
                           setSettingsDialogState(() {
                             if (result != null) {
                               player.setUrl(result.files.single.path!);
-                              player.url = result.files.single.path;
                             }
                           });
                         },
