@@ -39,6 +39,7 @@ dependencies:
   just_audio: ^0.9.30
   flutter_colorpicker: ^1.0.3
   file_picker: ^5.2.4
+  flutter_file_dialog: ^2.3.2
   json_annotation: ^4.7.0
   build_runner: ^2.3.3
   toml: ^0.13.1
