@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-Future<void> JsonDisplayDialog(BuildContext context, String encoded) {
+Future<void> jsonDisplayDialog(BuildContext context, String encoded) {
   return showDialog(
       context: context,
       builder: (context) {
