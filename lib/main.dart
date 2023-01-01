@@ -115,7 +115,7 @@ class MyHomePageState extends State<MyHomePage> {
                 if (value == 1) {
                   String encoded =
                       const JsonEncoder.withIndent("  ").convert(players);
-                  await jsonDisplayDialog(context, encoded);
+                  await jsonDisplayDialog(context, encoded, "data.json");
                 } else if (value == 2) {
                   String encoded = TomlDocument.fromMap({
                     "players": [
@@ -124,7 +124,7 @@ class MyHomePageState extends State<MyHomePage> {
                           ..removeWhere((key, value) => value == null)
                     ]
                   }).toString();
-                  await jsonDisplayDialog(context, encoded);
+                  await jsonDisplayDialog(context, encoded, "data.toml");
                 }
               },
             ),
